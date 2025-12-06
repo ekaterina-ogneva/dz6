@@ -1,7 +1,11 @@
-/* Общие стили страницы */
+/* Сброс отступов и настройка шрифта */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    padding: 20px;
+    padding: 10px;
     background-color: #f5f5f5;
     display: flex;
     justify-content: center;
@@ -13,31 +17,35 @@ body {
 /* Рамка вокруг изображения */
 .frame {
     position: relative;
-    border: 30px solid #ffffff; /* белая рамка */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: inline-block;
+    border: 20px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 95vw; /* не выходит за границы экрана */
+    width: fit-content;
 }
 
-/* Изображение */
+/* Адаптивное изображение */
 .image {
     display: block;
-    width: 800px;
+    max-width: 100%;
     height: auto;
+    /* Для десктопа — фиксированная максимальная ширина */
+    width: min(800px, 100%);
 }
 
-/* Кнопка-стрелка — справа посередине */
+/* Кнопка-стрелка — справа по центру изображения */
 .arrow-button {
     position: absolute;
     top: 50%;
-    right: 15px;
+    right: 10px; /* отступ от края изображения */
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
     background-color: white;
-    border: 2px solid #007BFF; /* синий контур */
+    border: 2px solid #007BFF;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    z-index: 10;
 }
 
 .arrow-button:hover {
@@ -54,4 +62,25 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
+}
+
+/* Адаптация для маленьких экранов */
+@media (max-width: 480px) {
+    .frame {
+        border-width: 12px;
+    }
+
+    .image {
+        width: 100%;
+    }
+
+    .arrow-button {
+        width: 36px;
+        height: 36px;
+        right: 8px;
+    }
+
+    .arrow-button::after {
+        font-size: 18px;
+    }
 }
